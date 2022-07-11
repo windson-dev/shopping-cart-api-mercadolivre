@@ -1,5 +1,5 @@
 require('../mocks/fetchSimulator');
-const { fetchItem, getFetch } = require('../helpers/fetchItem');
+const { fetchItem, getFetch1 } = require('../helpers/fetchItem');
 const item = require('../mocks/item');
 
 describe('2 - Teste a função fetchItem', () => {
@@ -17,7 +17,7 @@ describe('2 - Teste a função fetchItem', () => {
     expect.assertions(1);
 
     await fetchItem('MLB1615760527');
-    const getEndPoint = getFetch('MLB1615760527');
+    const getEndPoint = getFetch1('MLB1615760527');
     expect(fetch).toBeCalledWith(getEndPoint);
   })
 

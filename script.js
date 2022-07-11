@@ -53,5 +53,7 @@ const createDynamicItensList = async () => {
     getItems.appendChild(createObjectProductItems);
   });
 };
+
 createDynamicItensList();
+
 window.onload = () => { };
