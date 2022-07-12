@@ -19,9 +19,9 @@ const cartItemClickListener = (event) => {
 };
 
 const addTotalPrice = async (salePrice) => {
-  const getCartTotalPrice = document.querySelector('.total-price').innerText;
+  const getCartTotalPrice = await document.querySelector('.total-price').innerText;
   const newNumber = Number(getCartTotalPrice);
-  const sum = await newNumber + Number(salePrice);
+  const sum = newNumber + Number(salePrice);
   document.querySelector('.total-price').innerText = `${Math.round(sum * 100) / 100}`;
 };
 
