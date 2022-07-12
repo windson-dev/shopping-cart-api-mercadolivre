@@ -18,11 +18,11 @@ const cartItemClickListener = (event) => {
   event.target.remove();
 };
 
-const addTotalPrice = async (salePrice) => {
-  const getCartTotalPrice = await document.querySelector('.total-price').innerText;
+const addTotalPrice = (salePrice) => {
+  const getCartTotalPrice = document.querySelector('.total-price').innerText;
   const newNumber = Number(getCartTotalPrice);
   const sum = newNumber + Number(salePrice);
-  document.querySelector('.total-price').innerText = `${Math.round(sum * 100) / 100}`;
+  document.querySelector('.total-price').innerText = `${sum}`;
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
