@@ -18,27 +18,30 @@ const cartItemClickListener = (event) => {
   event.target.remove();
 };
 
+const addTotalPrice = (salePrice) => {
+  const getCartTotalPrice = document.querySelector('.total-price').innerText;
+  const newNumber = Number(getCartTotalPrice);
+  const sum = newNumber + Number(salePrice);
+  document.querySelector('.total-price').innerText = `${Math.round(sum * 100) / 100}`;
+  console.log(Number(getCartTotalPrice) + Number(salePrice));
+};
+
 const createCartItemElement = ({ sku, name, salePrice }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
   li.addEventListener('click', cartItemClickListener);
+  addTotalPrice(salePrice);
   return li;
 };
 
 const addItensInCart = async (itemID) => {
   const getAddCartButton = document.querySelector('.cart__items');
-
   const getItensID = getSkuFromProductItem(itemID);
-
   const { id: sku, title: name, price: salePrice } = await fetchItem(getItensID);
-
   const addItemsInCart = createCartItemElement({ sku, name, salePrice });
-
   getAddCartButton.appendChild(addItemsInCart);
 };
-
-addItensInCart();
 
 const createProductItemElement = ({ sku, name, image }) => {
   const section = document.createElement('section');
@@ -71,6 +74,7 @@ const createDynamicItensList = async () => {
   });
 };
 
-createDynamicItensList();
-
-window.onload = () => { };
+window.onload = () => { 
+  createDynamicItensList();
+  addItensInCart();
+};
