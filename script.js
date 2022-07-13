@@ -6,6 +6,7 @@ const createProductImageElement = (imageSource) => {
 };
 
 const value = document.querySelector('.cart__items');
+const getCartTotalPrice = document.querySelector('.total-price');
 
 const createCustomElement = (element, className, innerText) => {
   const e = document.createElement(element);
@@ -30,17 +31,15 @@ const removeAllItensInCartList = () => {
   const getRemove = document.querySelector('.empty-cart');
   getRemove.addEventListener('click', () => {
     value.innerText = ' ';
-    // eslint-disable-next-line sonarjs/no-duplicate-string
-    document.querySelector('.total-price').innerText = 0;
+    getCartTotalPrice.innerText = 0;
     saveCartItems(value.innerHTML);
   });
 };
 
-const addTotalPrice = async (salePrice) => {
-  const getCartTotalPrice = document.querySelector('.total-price').innerText;
-  const newNumber = Number(getCartTotalPrice);
+const addTotalPrice = (salePrice) => {
+  const newNumber = Number(getCartTotalPrice.innerText);
   const sum = newNumber + Number(salePrice);
-  document.querySelector('.total-price').innerText = sum;
+  getCartTotalPrice.innerText = sum;
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
