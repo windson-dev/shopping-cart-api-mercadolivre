@@ -21,11 +21,18 @@ const cartItemClickListener = (event) => {
   saveCartItems(value.innerHTML);
 };
 
+const removeAllItensInCartList = () => {
+  const getRemove = document.querySelector('.empty-cart');
+  getRemove.addEventListener('click', () => {
+    value.innerText = ' ';
+  });
+};
+
 const addTotalPrice = async (salePrice) => {
   const getCartTotalPrice = document.querySelector('.total-price').innerText;
   const newNumber = Number(getCartTotalPrice);
-  const sum1 = newNumber + Number(salePrice);
-  document.querySelector('.total-price').innerText = sum1;
+  const sum = newNumber + Number(salePrice);
+  document.querySelector('.total-price').innerText = sum;
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -87,4 +94,5 @@ window.onload = () => {
   addItensInCart();
   value.innerHTML = getSavedCartItems();
   removeItensListAfterReloadPage();
+  removeAllItensInCartList();
 };
