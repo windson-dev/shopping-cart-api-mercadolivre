@@ -17,8 +17,15 @@ const createCustomElement = (element, className, innerText) => {
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
+const addTotalPrice = async (salePrice) => {
+  const newNumber = Number(getCartTotalPrice.innerText);
+  const sum = newNumber + Number(salePrice);
+  getCartTotalPrice.innerText = sum;
+};
+
 const cartItemClickListener = (event) => {
   event.target.remove();
+  addTotalPrice();
   saveCartItems(value.innerHTML);
 };
 
@@ -34,12 +41,6 @@ const removeAllItensInCartList = () => {
     getCartTotalPrice.innerText = 0;
     saveCartItems(value.innerHTML);
   });
-};
-
-const addTotalPrice = async (salePrice) => {
-  const newNumber = Number(getCartTotalPrice.innerText);
-  const sum = newNumber + Number(salePrice);
-  getCartTotalPrice.innerText = sum;
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
