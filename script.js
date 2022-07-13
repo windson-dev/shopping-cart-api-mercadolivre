@@ -25,7 +25,7 @@ const addTotalPrice = async (salePrice) => {
   const getCartTotalPrice = document.querySelector('.total-price').innerText;
   const newNumber = Number(getCartTotalPrice);
   const sum = newNumber + Number(salePrice);
-  document.querySelector('.total-price').innerText = `${sum}`;
+  document.querySelector('.total-price').innerText = sum;
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
