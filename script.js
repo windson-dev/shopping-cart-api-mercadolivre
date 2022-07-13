@@ -21,10 +21,18 @@ const cartItemClickListener = (event) => {
   saveCartItems(value.innerHTML);
 };
 
+const removeItensListAfterReloadPage = () => {
+  const getCartItemList = document.querySelectorAll('.cart__item');
+  getCartItemList.forEach((element) => element.addEventListener('click', cartItemClickListener));
+};
+
 const removeAllItensInCartList = () => {
   const getRemove = document.querySelector('.empty-cart');
   getRemove.addEventListener('click', () => {
     value.innerText = ' ';
+    // eslint-disable-next-line sonarjs/no-duplicate-string
+    document.querySelector('.total-price').innerText = 0;
+    saveCartItems(value.innerHTML);
   });
 };
 
@@ -82,11 +90,6 @@ const createDynamicItensList = async () => {
     const createObjectProductItems = createProductItemElement(objectListenner);
     getItems.appendChild(createObjectProductItems);
   });
-};
-
-const removeItensListAfterReloadPage = () => {
-  const getCartItemList = document.querySelectorAll('.cart__item');
-  getCartItemList.forEach((element) => element.addEventListener('click', cartItemClickListener));
 };
 
 window.onload = () => {
