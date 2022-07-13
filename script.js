@@ -17,10 +17,19 @@ const createCustomElement = (element, className, innerText) => {
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
-const addTotalPrice = async (salePrice) => {
-  const newNumber = Number(getCartTotalPrice.innerText);
-  const sum = newNumber + Number(salePrice);
-  getCartTotalPrice.innerText = sum;
+const addTotalPrice = () => {
+  const arr = [];
+  const getCartItem = document.querySelectorAll('.cart__item');
+
+  getCartItem.forEach((element) => {
+    const getString = element.textContent;
+    const splitString = getString.split('$');
+    arr.push(Number(splitString[1]));
+  });
+
+  const getResult = arr.reduce((acc, curr) => acc + curr, 0);
+  getCartTotalPrice.innerHTML = getResult;
+  saveCartItems(value.innerHTML);
 };
 
 const cartItemClickListener = (event) => {
@@ -48,7 +57,6 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
   li.addEventListener('click', cartItemClickListener);
-  addTotalPrice(salePrice);
   return li;
 };
 
@@ -58,6 +66,7 @@ const addItensInCart = async (itemID) => {
   const { id: sku, title: name, price: salePrice } = await fetchItem(getItensID);
   const addItemsInCart = createCartItemElement({ sku, name, salePrice });
   getAddCartButton.appendChild(addItemsInCart);
+  addTotalPrice();
   saveCartItems(value.innerHTML);
 };
 
