@@ -24,8 +24,8 @@ const cartItemClickListener = (event) => {
 const addTotalPrice = async (salePrice) => {
   const getCartTotalPrice = document.querySelector('.total-price').innerText;
   const newNumber = Number(getCartTotalPrice);
-  const sum = newNumber + Number(salePrice);
-  document.querySelector('.total-price').innerText = sum;
+  const sum1 = newNumber + Number(salePrice);
+  document.querySelector('.total-price').innerText = sum1;
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
