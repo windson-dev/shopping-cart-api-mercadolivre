@@ -36,10 +36,10 @@ const removeAllItensInCartList = () => {
   });
 };
 
-const addTotalPrice = (salePrice) => {
+const addTotalPrice = async (salePrice) => {
   const newNumber = Number(getCartTotalPrice.innerText);
   const sum = newNumber + Number(salePrice);
-  getCartTotalPrice.innerText = Math.round(sum * 100) / 100;
+  getCartTotalPrice.innerText = Math.round(sum * 10) / 10;
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
